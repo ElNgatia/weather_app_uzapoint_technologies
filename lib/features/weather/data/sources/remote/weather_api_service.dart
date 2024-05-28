@@ -8,6 +8,7 @@ import '../../models/temperature_trend_model.dart';
 import '../../models/weather_model.dart';
 
 class WeatherApiService {
+  // TODO: input api key
   final String apiKey = 'YOUR_API_KEY';
   final String baseUrl = 'http://api.openweathermap.org/data/2.5/';
 
