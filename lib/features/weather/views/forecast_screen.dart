@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app_uza_technologies/features/weather/models/forecast_model.dart';
 import 'package:weather_app_uza_technologies/features/weather/views/widgets/forecast_card.dart';
+import 'package:weather_app_uza_technologies/features/weather/views/widgets/more_information.dart';
 
 import '../controllers/weather_controller.dart';
+import 'widgets/more_forecast_information.dart';
 
 class ForecastScreen extends StatefulWidget {
   const ForecastScreen({super.key});
@@ -14,6 +17,7 @@ class ForecastScreen extends StatefulWidget {
 
 class _ForecastScreenState extends State<ForecastScreen> {
   late Future<void> _forecastFuture;
+  ForecastModel? selecteForecast;
 
   @override
   void initState() {
@@ -59,14 +63,14 @@ class _ForecastScreenState extends State<ForecastScreen> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                          const SizedBox(height: 16),
+                          // const SizedBox(height: 16),
                           Text(
                             'Forecast',
                             style: Theme.of(context).textTheme.headlineSmall,
                           ),
                           const SizedBox(height: 16),
                           SizedBox(
-                            height: 150,
+                            height: 170,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
                               shrinkWrap: true,
@@ -75,19 +79,35 @@ class _ForecastScreenState extends State<ForecastScreen> {
                               itemBuilder: (context, index) {
                                 final forecast =
                                     weatherController.forecast[index];
-                                return ForecastCard(
-                                  time: DateFormat.Hm().format(
-                                      DateTime.fromMillisecondsSinceEpoch(
-                                          forecast!.date * 1000)),
-                                  date: DateFormat.yMd().format(
-                                      DateTime.fromMillisecondsSinceEpoch(
-                                          forecast.date * 1000)),
-                                  tempMax: forecast.tempMax,
-                                  tempMin: forecast.tempMin,
+                                return GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      selecteForecast = forecast;
+                                    });
+                                  },
+                                  child: ForecastCard(
+                                    time: DateFormat.Hm().format(
+                                        DateTime.fromMillisecondsSinceEpoch(
+                                            forecast!.date * 1000)),
+                                    date: DateFormat.yMd().format(
+                                        DateTime.fromMillisecondsSinceEpoch(
+                                            forecast.date * 1000)),
+                                    tempMax: forecast.tempMax,
+                                    tempMin: forecast.tempMin,
+                                    description: forecast.description,
+                                  ),
                                 );
                               },
                             ),
                           ),
+                          const SizedBox(height: 16),
+                          if (selecteForecast != null)
+                            MoreForecastInformation(
+                                pressure: selecteForecast!.pressure,
+                                humidity: selecteForecast!.humidity,
+                                windSpeed: selecteForecast!.wind,
+                                visibility: selecteForecast!.visibility,
+                                )
                         ],
                       ),
                     );

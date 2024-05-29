@@ -6,12 +6,14 @@ class ForecastCard extends StatelessWidget {
   final double tempMin;
   final String date;
   final String time;
+  final String description;
   const ForecastCard({
     super.key,
     required this.tempMax,
     required this.tempMin,
     required this.date,
     required this.time,
+    required this.description,
   });
 
   @override
@@ -43,6 +45,14 @@ class ForecastCard extends StatelessWidget {
           ),
           Text(
             time.toString(),
+            style: const TextStyle(
+              fontSize: 17,
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          Text(
+            description,
             style: const TextStyle(
               fontSize: 17,
               color: Colors.white,
