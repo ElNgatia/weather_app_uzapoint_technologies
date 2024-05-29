@@ -11,6 +11,7 @@ class WeatherModel {
   final int visibility;
   final int sunset;
   final int sunrise;
+  final String icon;
 
   WeatherModel({
     required this.description,
@@ -25,6 +26,7 @@ class WeatherModel {
     required this.visibility,
     required this.sunset,
     required this.sunrise,
+    required this.icon,
   });
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) {
@@ -41,23 +43,7 @@ class WeatherModel {
       visibility: json['visibility'],
       sunset: json['sys']['sunset'],
       sunrise: json['sys']['sunrise'],
-    );
-  }
-
-  WeatherModel toEntity() {
-    return WeatherModel(
-      description: description,
-      temp: temp,
-      feelsLike: feelsLike,
-      tempMin: tempMin,
-      tempMax: tempMax,
-      pressure: pressure,
-      place: place,
-      wind: wind,
-      humidity: humidity,
-      visibility: visibility,
-      sunset: sunset,
-      sunrise: sunrise,
+      icon: json['weather'][0]['icon'],
     );
   }
 }

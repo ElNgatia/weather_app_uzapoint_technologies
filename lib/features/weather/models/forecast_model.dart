@@ -9,7 +9,7 @@ class ForecastModel {
   final double wind;
   final int humidity;
   final int visibility;
-
+  final String icon;
 
   ForecastModel({
     required this.date,
@@ -22,7 +22,7 @@ class ForecastModel {
     required this.wind,
     required this.humidity,
     required this.visibility,
-
+    required this.icon,
   });
 
   factory ForecastModel.fromJson(Map<String, dynamic> json) {
@@ -37,7 +37,7 @@ class ForecastModel {
       wind: json['wind']['speed'],
       humidity: json['main']['humidity'],
       visibility: json['visibility'],
-
+      icon: json['weather'][0]['icon'],
     );
   }
 }

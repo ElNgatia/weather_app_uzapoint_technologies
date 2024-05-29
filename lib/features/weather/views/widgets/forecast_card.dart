@@ -7,6 +7,7 @@ class ForecastCard extends StatelessWidget {
   final String date;
   final String time;
   final String description;
+  final String icon;
   const ForecastCard({
     super.key,
     required this.tempMax,
@@ -14,10 +15,12 @@ class ForecastCard extends StatelessWidget {
     required this.date,
     required this.time,
     required this.description,
+    required this.icon,
   });
 
   @override
   Widget build(BuildContext context) {
+    final String iconUrl = 'http://openweathermap.org/img/wn/$icon@2x.png';
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 15),
       margin: const EdgeInsets.only(right: 20),
@@ -51,6 +54,14 @@ class ForecastCard extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
+          const SizedBox(height: 8),
+          Image.network(
+            iconUrl,
+            width: 25,
+            height: 25,
+            fit: BoxFit.cover,
+          ),
+          const SizedBox(height: 8),
           Text(
             description,
             style: const TextStyle(

@@ -94,7 +94,7 @@ class _ForecastScreenState extends State<ForecastScreen> {
                                             forecast.date * 1000)),
                                     tempMax: forecast.tempMax,
                                     tempMin: forecast.tempMin,
-                                    description: forecast.description,
+                                    description: forecast.description, icon: forecast.icon,
                                   ),
                                 );
                               },
