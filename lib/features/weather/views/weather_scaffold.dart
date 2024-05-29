@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'current_weather_screen.dart';
 import 'forecast_screen.dart';
-import 'temperature_trends_screen.dart';
+
 
 class WeatherHomeScreen extends StatefulWidget {
   const WeatherHomeScreen({super.key});
@@ -17,7 +17,6 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
   static const List<Widget> _screens = <Widget>[
     CurrentWeatherScreen(),
     ForecastScreen(),
-    TemperatureTrendScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -30,6 +29,7 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Weather App'),
       ),
       body: _screens.elementAt(_selectedIndex),
@@ -43,10 +43,7 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
             icon: Icon(Icons.cloud),
             label: 'Forecast',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.show_chart),
-            label: 'Trends',
-          ),
+          
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
