@@ -1,28 +1,22 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:weather_app_uza_technologies/features/weather/models/weather_model.dart';
+import 'package:weather_app_uza_technologies/features/weather/services/weather_api_service.dart';
 
-import '../../data/sources/remote/location_service.dart';
-import '../../domain/entities/weather.dart';
-import '../../domain/usecases/fetch_temperature_trends.dart';
-import '../../domain/usecases/fetch_weather_by_city.dart';
-import '../../domain/usecases/fetch_weather_by_location.dart';
+import '../services/location_service.dart';
 
 class WeatherController extends ChangeNotifier {
-  final FetchWeatherByCity fetchWeatherByCity;
-  final FetchWeatherByLocation fetchWeatherByLocation;
-  final FetchTemperatureTrends fetchTemperatureTrends;
   final LocationService locationService;
+  final WeatherApiService weatherApiService;
 
   WeatherController({
-    required this.fetchWeatherByCity,
-    required this.fetchWeatherByLocation,
-    required this.fetchTemperatureTrends,
+    required this.weatherApiService, 
     required this.locationService,
   });
 
-  Weather? _weather;
+  WeatherModel? _weather;
 
-  Weather? get weather => _weather;
+  WeatherModel? get weather => _weather;
   bool _loading = false;
   bool get loading => _loading;
   String? _error;
@@ -32,7 +26,7 @@ class WeatherController extends ChangeNotifier {
     _loading = true;
     notifyListeners();
     try {
-      _weather = await fetchWeatherByCity(city);
+      _weather = await weatherApiService.fetchWeatherByCity(city);
       _error = null;
     } catch (e) {
       _error = e.toString();
@@ -49,7 +43,7 @@ class WeatherController extends ChangeNotifier {
     try {
       final position = await locationService.getCurrentLocation();
       _weather =
-          await fetchWeatherByLocation(position.latitude, position.longitude);
+          await weatherApiService.fetchWeatherByCoordinates(position.latitude, position.longitude);
       _error = null;
     } catch (error) {
       _error = error.toString();
@@ -58,6 +52,4 @@ class WeatherController extends ChangeNotifier {
       notifyListeners();
     }
   }
-
-
 }

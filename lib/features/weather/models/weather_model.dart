@@ -25,4 +25,15 @@ class WeatherModel {
       pressure: json['main']['pressure'],
     );
   }
+
+  WeatherModel toEntity() {
+    return WeatherModel(
+      description: description,
+      temp: temp,
+      feelsLike: feelsLike,
+      tempMin: tempMin,
+      tempMax: tempMax,
+      pressure: pressure,
+    );
+  }
 }

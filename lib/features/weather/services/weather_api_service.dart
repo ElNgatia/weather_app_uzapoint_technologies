@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 
-import '../../models/forecast_model.dart';
-import '../../models/temperature_trend_model.dart';
-import '../../models/weather_model.dart';
+import '../models/forecast_model.dart';
+import '../models/temperature_trend_model.dart';
+import '../models/weather_model.dart';
 
 class WeatherApiService {
   // TODO: input api key
-  final String apiKey = 'YOUR_API_KEY';
+  final String apiKey = '5c758cbb14019c4a1e8135f331e7b1b9';
   final String baseUrl = 'http://api.openweathermap.org/data/2.5/';
 
   Future<WeatherModel> fetchWeatherByCity(String city) async {
