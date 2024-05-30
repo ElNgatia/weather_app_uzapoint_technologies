@@ -26,6 +26,7 @@ class WeatherApiService {
         '${baseUrl}forecast?lat=$lat&lon=$lon&appid=$apiKey&units=metric'));
     if (response.statusCode == 200) {
       final List<dynamic> forecastList = jsonDecode(response.body)['list'];
+    
       return forecastList.map((json) => ForecastModel.fromJson(json)).toList();
     } else {
       throw Exception('Failed to load forecast data');

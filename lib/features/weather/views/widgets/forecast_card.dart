@@ -65,7 +65,7 @@ class ForecastCard extends StatelessWidget {
           Text(
             description,
             style: const TextStyle(
-              fontSize: 17,
+              fontSize: 16,
               color: Colors.white,
               fontWeight: FontWeight.w500,
             ),

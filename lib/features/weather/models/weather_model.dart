@@ -1,17 +1,17 @@
 class WeatherModel {
   final String description;
+  final String icon;
+  final String place;
   final double temp;
   final double feelsLike;
   final double tempMin;
   final double tempMax;
-  final int pressure;
-  final String place;
   final double wind;
+  final int pressure;
   final int humidity;
   final int visibility;
   final int sunset;
   final int sunrise;
-  final String icon;
 
   WeatherModel({
     required this.description,

@@ -46,7 +46,7 @@ class WeatherCard extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: Colors.white),
                 ),
-                Spacer(),
+                const Spacer(),
                 Image.network(
                   iconUrl,
                   width: 50,

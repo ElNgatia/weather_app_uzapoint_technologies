@@ -1,15 +1,15 @@
 class ForecastModel {
-  final int date;
-  final double temp;
+  final String icon;
   final String description;
   final double feelsLike;
   final double tempMin;
   final double tempMax;
-  final int pressure;
   final double wind;
+  final double temp;
+  final int date;
   final int humidity;
   final int visibility;
-  final String icon;
+  final int pressure;
 
   ForecastModel({
     required this.date,
@@ -29,14 +29,14 @@ class ForecastModel {
     return ForecastModel(
       date: json['dt'],
       temp: json['main']['temp'],
-      description: json['weather'][0]['description'],
       feelsLike: json['main']['feels_like'],
       tempMin: json['main']['temp_min'],
       tempMax: json['main']['temp_max'],
       pressure: json['main']['pressure'],
-      wind: json['wind']['speed'],
       humidity: json['main']['humidity'],
+      wind: json['wind']['speed'],
       visibility: json['visibility'],
+      description: json['weather'][0]['description'],
       icon: json['weather'][0]['icon'],
     );
   }

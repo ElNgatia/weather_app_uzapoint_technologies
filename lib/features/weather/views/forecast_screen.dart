@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app_uza_technologies/features/weather/models/forecast_model.dart';
-import 'package:weather_app_uza_technologies/features/weather/views/widgets/forecast_card.dart';
 
 import '../controllers/weather_controller.dart';
+import '../models/forecast_model.dart';
+import '../views/widgets/forecast_card.dart';
 import 'widgets/more_forecast_information.dart';
 
 class ForecastScreen extends StatefulWidget {
@@ -16,7 +16,7 @@ class ForecastScreen extends StatefulWidget {
 
 class _ForecastScreenState extends State<ForecastScreen> {
   late Future<void> _forecastFuture;
-  ForecastModel? selecteForecast;
+  ForecastModel? selectedForecast;
 
   @override
   void initState() {
@@ -53,7 +53,7 @@ class _ForecastScreenState extends State<ForecastScreen> {
                     } else if (weatherController.error != null) {
                       return Center(
                           child: Text(
-                              'An error occurred: ${weatherController.error}'));
+                              '${weatherController.error}'));
                     } else if (weatherController.forecast == null) {
                       return const Center(
                           child: Text('No forecast data available'));
@@ -80,32 +80,40 @@ class _ForecastScreenState extends State<ForecastScreen> {
                                 return GestureDetector(
                                   onTap: () {
                                     setState(() {
-                                      selecteForecast = forecast;
+                                      selectedForecast = forecast;
                                     });
                                   },
                                   child: ForecastCard(
                                     time: DateFormat.Hm().format(
                                         DateTime.fromMillisecondsSinceEpoch(
-                                            forecast!.date * 1000)),
+                                            (forecast!.date * 1000))),
                                     date: DateFormat.yMd().format(
                                         DateTime.fromMillisecondsSinceEpoch(
                                             forecast.date * 1000)),
                                     tempMax: forecast.tempMax,
                                     tempMin: forecast.tempMin,
-                                    description: forecast.description, icon: forecast.icon,
+                                    description: forecast.description,
+                                    icon: forecast.icon,
                                   ),
                                 );
                               },
                             ),
                           ),
                           const SizedBox(height: 16),
-                          if (selecteForecast != null)
+                          if (selectedForecast != null)
                             MoreForecastInformation(
-                                pressure: selecteForecast!.pressure,
-                                humidity: selecteForecast!.humidity,
-                                windSpeed: selecteForecast!.wind,
-                                visibility: selecteForecast!.visibility,
-                                )
+                              pressure: selectedForecast!.pressure,
+                              humidity: selectedForecast!.humidity,
+                              windSpeed: selectedForecast!.wind,
+                              visibility: selectedForecast!.visibility,
+                            ),
+                          if (selectedForecast == null)
+                            MoreForecastInformation(
+                                pressure: weatherController.weather!.pressure,
+                                humidity: weatherController.weather!.humidity,
+                                windSpeed: weatherController.weather!.wind,
+                                visibility:
+                                    weatherController.weather!.visibility)
                         ],
                       ),
                     );

@@ -1,16 +1,58 @@
-# weather_app_uza_technologies
+# Weather App Uzapoint Technologies Assessment
 
-A new Flutter project.
+A weather app assessment Flutter project.
 
-## Getting Started
+## Setup
 
-This project is a starting point for a Flutter application.
+### Prerequisites
 
-A few resources to get you started if this is your first Flutter project:
+Ensure you have the following installed:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Flutter SDK
+- Android Studio or Visual Studio Code with Flutter and Dart plugins
+- A device emulator or a physical device for testing
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Getting Started
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/ElNgatia/
+```
+
+2. Navigate to the project directory
+
+```bash
+cd weather_app_uza_technologies
+```
+
+3. Install dependencies
+
+```bash
+flutter pub get
+```
+
+4. Create a `.env` file in the root of the project and add the following:
+
+```bash
+WEATHER_API_KEY=YOUR_API_KEY
+```
+
+Replace `YOUR_API_KEY` with your OpenWeatherMap API key
+
+5. Run the app
+
+```bash
+flutter run
+```
+
+## Features
+
+- Get the current weather of your location
+- Get the weather of any city by searching for it
+
+
+## Screenshots
+
+![Screenshot 1](screenshots/screenshot_1.png)
+![Screenshot 2](screenshots/screenshot_2.png)

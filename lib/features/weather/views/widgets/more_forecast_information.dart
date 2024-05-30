@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'weather_info_item.dart';
 
 class MoreForecastInformation extends StatelessWidget {
+  final double windSpeed;
   final int pressure;
   final int humidity;
-  final double windSpeed;
   final int visibility;
 
   const MoreForecastInformation({

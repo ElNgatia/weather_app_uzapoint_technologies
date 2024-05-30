@@ -39,7 +39,7 @@ class _CurrentWeatherScreenState extends State<CurrentWeatherScreen> {
                 );
               } else if (snapshot.hasError) {
                 return Center(
-                  child: Text('An error occurred: ${snapshot.error}'),
+                  child: Text('${snapshot.error}'),
                 );
               } else {
                 Provider.of<WeatherController>(context);
@@ -50,7 +50,7 @@ class _CurrentWeatherScreenState extends State<CurrentWeatherScreen> {
                     } else if (weatherController.error != null) {
                       return Center(
                           child: Text(
-                              'An error occurred: ${weatherController.error}'));
+                              '${weatherController.error}'));
                     } else if (weatherController.weather == null) {
                       return const Center(
                           child: Text('No weather data available'));

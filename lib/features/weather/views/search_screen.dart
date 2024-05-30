@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../controllers/weather_controller.dart';
@@ -24,11 +26,7 @@ class SearchPage extends StatelessWidget {
                 suffixIcon: IconButton(
                   icon: const Icon(Icons.search),
                   onPressed: () async {
-                    String city = cityController.text.trim();
-                    if (city.isNotEmpty) {
-                      await Provider.of<WeatherController>(context, listen: false).getWeatherByCity(city);
-                      Navigator.pop(context);
-                    }
+                    searchWeather(context, cityController.text);
                   },
                 ),
               ),
@@ -37,5 +35,13 @@ class SearchPage extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+void searchWeather(BuildContext context, String city) async {
+  if (city.isNotEmpty) {
+    await Provider.of<WeatherController>(context, listen: false)
+        .getWeatherByCity(city);
+    Navigator.pop(context);
   }
 }
