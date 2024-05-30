@@ -17,13 +17,13 @@ Ensure you have the following installed:
 1. Clone the repository
 
 ```bash
-git clone https://github.com/ElNgatia/
+git clone https://github.com/ElNgatia/weather_app_uzapoint_technologies
 ```
 
 2. Navigate to the project directory
 
 ```bash
-cd weather_app_uza_technologies
+cd weather_app_uzapoint_technologies
 ```
 
 3. Install dependencies
