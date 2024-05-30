@@ -54,5 +54,5 @@ flutter run
 
 ## Screenshots
 
-![Screenshot 1](screenshots/flutter_1.png)
-![Screenshot 2](screenshots/flutter_2.png)
+![Screenshot 1](screenshots/flutter_01.png)
+![Screenshot 2](screenshots/flutter_02.png)
