@@ -1,13 +1,13 @@
 import 'dart:convert';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/forecast_model.dart';
 import '../models/weather_model.dart';
 
 class WeatherApiService {
-  // TODO: input api key
-  final String apiKey = '5c758cbb14019c4a1e8135f331e7b1b9';
+  final String apiKey = dotenv.env['WEATHER_API_KEY']!;
   final String baseUrl = 'http://api.openweathermap.org/data/2.5/';
 
   Future<WeatherModel> fetchWeatherByCoordinates(double lat, double lon) async {

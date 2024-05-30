@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../controllers/theme_provider.dart';
 import 'current_weather_screen.dart';
 import 'forecast_screen.dart';
-
+import 'search_screen.dart';
 
 class WeatherHomeScreen extends StatefulWidget {
   const WeatherHomeScreen({super.key});
@@ -31,6 +33,16 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Weather App'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const SearchPage();
+              }));
+            },
+          ),
+        ],
       ),
       body: _screens.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
@@ -43,10 +55,15 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
             icon: Icon(Icons.cloud),
             label: 'Forecast',
           ),
-          
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+        },
+        child: const Icon(Icons.brightness_6),
       ),
     );
   }

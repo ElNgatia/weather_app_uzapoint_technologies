@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app_uza_technologies/features/weather/views/weather_scaffold.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:provider/provider.dart';
 import 'package:weather_app_uza_technologies/features/weather/providers/weather_provider.dart';
+import 'package:weather_app_uza_technologies/features/weather/views/weather_scaffold.dart';
 
-void main() {
+import 'features/weather/controllers/theme_provider.dart';
+
+Future<void> main() async {
+  await dotenv.load(fileName: '.env');
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) => ThemeProvider()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -13,17 +20,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return WeatherProvider(
       child: MaterialApp(
         title: 'Weather App',
-        theme: ThemeData(
-      
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
+        theme: ThemeData.light(),
+        darkTheme: ThemeData.dark(),
+        themeMode: themeProvider.themeMode,
         home: const WeatherHomeScreen(),
       ),
     );
   }
 }
-

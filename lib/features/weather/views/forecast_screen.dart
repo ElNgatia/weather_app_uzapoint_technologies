@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app_uza_technologies/features/weather/models/forecast_model.dart';
 import 'package:weather_app_uza_technologies/features/weather/views/widgets/forecast_card.dart';
-import 'package:weather_app_uza_technologies/features/weather/views/widgets/more_information.dart';
 
 import '../controllers/weather_controller.dart';
 import 'widgets/more_forecast_information.dart';
@@ -63,9 +62,8 @@ class _ForecastScreenState extends State<ForecastScreen> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                          // const SizedBox(height: 16),
                           Text(
-                            'Forecast',
+                            '5 Day Forecast',
                             style: Theme.of(context).textTheme.headlineSmall,
                           ),
                           const SizedBox(height: 16),

@@ -5,16 +5,19 @@ class WeatherCard extends StatelessWidget {
   final double temp;
   final double feelsLike;
   final String description;
+  final String icon;
 
   const WeatherCard({
     super.key,
     required this.temp,
     required this.feelsLike,
     required this.description,
+    required this.icon,
   });
 
   @override
   Widget build(BuildContext context) {
+    final String iconUrl = 'http://openweathermap.org/img/wn/$icon@2x.png';
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
@@ -34,12 +37,23 @@ class WeatherCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              '${temp.toStringAsFixed(0)} °C',
-              style: const TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
+            Row(
+              children: [
+                Text(
+                  '${temp.toStringAsFixed(0)} °C',
+                  style: const TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
+                Spacer(),
+                Image.network(
+                  iconUrl,
+                  width: 50,
+                  height: 50,
+                  fit: BoxFit.cover,
+                ),
+              ],
             ),
             const SizedBox(height: 8),
             Text(

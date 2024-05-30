@@ -60,9 +60,9 @@ class _CurrentWeatherScreenState extends State<CurrentWeatherScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          const Text(
-                            'Hello there!',
-                            style: TextStyle(
+                          Text(
+                            'Here\'s the weather in ${weatherController.weather!.place}',
+                            style: const TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
                             ),
@@ -74,18 +74,13 @@ class _CurrentWeatherScreenState extends State<CurrentWeatherScreen> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  weatherController.weather!.place,
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                  ),
-                                ),
-                                const SizedBox(height: 20),
+
+                                
                                 WeatherCard(
                                   temp: weatherController.weather!.temp,
                                   feelsLike: weatherController.weather!.feelsLike,
                                   description:
-                                      weatherController.weather!.description,
+                                      weatherController.weather!.description, icon: weatherController.weather!.icon,
                                 ),
                                 const SizedBox(height: 20),
                                 const Text(
