@@ -18,12 +18,11 @@ class _CurrentWeatherScreenState extends State<CurrentWeatherScreen> {
   @override
   void initState() {
     super.initState();
-    _weatherFuture = _fetchWeather();
+     _weatherFuture =  _fetchWeather();
   }
 
   Future<void> _fetchWeather() async {
-    await Provider.of<WeatherController>(context, listen: false)
-        .getWeatherByLocation();
+    await Provider.of<WeatherController>(context, listen: false).getWeatherByLocation();
   }
 
   @override
@@ -33,27 +32,14 @@ class _CurrentWeatherScreenState extends State<CurrentWeatherScreen> {
         child: FutureBuilder(
             future: _weatherFuture,
             builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (snapshot.hasError) {
-                return Center(
-                  child: Text('${snapshot.error}'),
-                );
-              } else {
-                Provider.of<WeatherController>(context);
                 return Consumer<WeatherController>(
                   builder: (context, weatherController, child) {
                     if (weatherController.loading) {
                       return const Center(child: CircularProgressIndicator());
                     } else if (weatherController.error != null) {
-                      return Center(
-                          child: Text(
-                              '${weatherController.error}'));
+                      return Center(child: Text('${weatherController.error}'));
                     } else if (weatherController.weather == null) {
-                      return const Center(
-                          child: Text('No weather data available'));
+                      return const Center(child: Text('No weather data available'));
                     }
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -74,13 +60,11 @@ class _CurrentWeatherScreenState extends State<CurrentWeatherScreen> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-
-                                
                                 WeatherCard(
                                   temp: weatherController.weather!.temp,
                                   feelsLike: weatherController.weather!.feelsLike,
-                                  description:
-                                      weatherController.weather!.description, icon: weatherController.weather!.icon,
+                                  description: weatherController.weather!.description,
+                                  icon: weatherController.weather!.icon,
                                 ),
                                 const SizedBox(height: 20),
                                 const Text(
@@ -107,7 +91,7 @@ class _CurrentWeatherScreenState extends State<CurrentWeatherScreen> {
                   },
                 );
               }
-            }),
+        )
       ),
     );
   }

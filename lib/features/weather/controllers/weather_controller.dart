@@ -41,16 +41,14 @@ class WeatherController extends ChangeNotifier {
 
   Future<void> getWeatherByLocation() async {
     _loading = true;
-    notifyListeners();
 
     try {
       final position = await locationService.getCurrentLocation();
-      _weather = await weatherApiService.fetchWeatherByCoordinates(
-          position.latitude, position.longitude);
-   
+      _weather =
+          await weatherApiService.fetchWeatherByCoordinates(position.latitude, position.longitude);
+
       _error = null;
     } catch (error) {
-    
       _error = error.toString();
     } finally {
       _loading = false;
@@ -74,16 +72,14 @@ class WeatherController extends ChangeNotifier {
 
   Future<void> getForecastByCoordinates() async {
     _loading = true;
-    notifyListeners();
 
     try {
       final position = await locationService.getCurrentLocation();
-      _forecastList = await weatherApiService.fetchForecastByCoordinates(
-          position.latitude, position.longitude);
-     
+      _forecastList =
+          await weatherApiService.fetchForecastByCoordinates(position.latitude, position.longitude);
+
       _error = null;
     } catch (error) {
-   
       _error = error.toString();
     } finally {
       _loading = false;

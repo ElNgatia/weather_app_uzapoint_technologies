@@ -25,8 +25,7 @@ class _ForecastScreenState extends State<ForecastScreen> {
   }
 
   Future<void> _fetchForecast() async {
-    await Provider.of<WeatherController>(context, listen: false)
-        .getForecastByCoordinates();
+    await Provider.of<WeatherController>(context, listen: false).getForecastByCoordinates();
   }
 
   @override
@@ -51,12 +50,9 @@ class _ForecastScreenState extends State<ForecastScreen> {
                     if (weatherController.loading) {
                       return const Center(child: CircularProgressIndicator());
                     } else if (weatherController.error != null) {
-                      return Center(
-                          child: Text(
-                              '${weatherController.error}'));
+                      return Center(child: Text('${weatherController.error}'));
                     } else if (weatherController.forecast == null) {
-                      return const Center(
-                          child: Text('No forecast data available'));
+                      return const Center(child: Text('No forecast data available'));
                     }
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -75,8 +71,7 @@ class _ForecastScreenState extends State<ForecastScreen> {
                               physics: const BouncingScrollPhysics(),
                               itemCount: weatherController.forecast.length,
                               itemBuilder: (context, index) {
-                                final forecast =
-                                    weatherController.forecast[index];
+                                final forecast = weatherController.forecast[index];
                                 return GestureDetector(
                                   onTap: () {
                                     setState(() {
@@ -88,8 +83,7 @@ class _ForecastScreenState extends State<ForecastScreen> {
                                         DateTime.fromMillisecondsSinceEpoch(
                                             (forecast!.date * 1000))),
                                     date: DateFormat.yMd().format(
-                                        DateTime.fromMillisecondsSinceEpoch(
-                                            forecast.date * 1000)),
+                                        DateTime.fromMillisecondsSinceEpoch(forecast.date * 1000)),
                                     tempMax: forecast.tempMax,
                                     tempMin: forecast.tempMin,
                                     description: forecast.description,
@@ -107,13 +101,12 @@ class _ForecastScreenState extends State<ForecastScreen> {
                               windSpeed: selectedForecast!.wind,
                               visibility: selectedForecast!.visibility,
                             ),
-                          if (selectedForecast == null)
+                          if (selectedForecast == null && weatherController.forecast != null)
                             MoreForecastInformation(
                                 pressure: weatherController.weather!.pressure,
                                 humidity: weatherController.weather!.humidity,
                                 windSpeed: weatherController.weather!.wind,
-                                visibility:
-                                    weatherController.weather!.visibility)
+                                visibility: weatherController.weather!.visibility)
                         ],
                       ),
                     );

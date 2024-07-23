@@ -11,8 +11,8 @@ class WeatherApiService {
   final String baseUrl = 'http://api.openweathermap.org/data/2.5/';
 
   Future<WeatherModel> fetchWeatherByCoordinates(double lat, double lon) async {
-    final response = await http.get(Uri.parse(
-        '${baseUrl}weather?lat=$lat&lon=$lon&appid=$apiKey&units=metric'));
+    final response =
+        await http.get(Uri.parse('${baseUrl}weather?lat=$lat&lon=$lon&appid=$apiKey&units=metric'));
     if (response.statusCode == 200) {
       return WeatherModel.fromJson(jsonDecode(response.body));
     } else {
@@ -20,13 +20,12 @@ class WeatherApiService {
     }
   }
 
-  Future<List<ForecastModel>> fetchForecastByCoordinates(
-      double lat, double lon) async {
-    final response = await http.get(Uri.parse(
-        '${baseUrl}forecast?lat=$lat&lon=$lon&appid=$apiKey&units=metric'));
+  Future<List<ForecastModel>> fetchForecastByCoordinates(double lat, double lon) async {
+    final response = await http
+        .get(Uri.parse('${baseUrl}forecast?lat=$lat&lon=$lon&appid=$apiKey&units=metric'));
     if (response.statusCode == 200) {
       final List<dynamic> forecastList = jsonDecode(response.body)['list'];
-    
+
       return forecastList.map((json) => ForecastModel.fromJson(json)).toList();
     } else {
       throw Exception('Failed to load forecast data');
@@ -34,8 +33,8 @@ class WeatherApiService {
   }
 
   Future<WeatherModel> fetchWeatherByCity(String city) async {
-    final response = await http
-        .get(Uri.parse('${baseUrl}weather?q=$city&appid=$apiKey&units=metric'));
+    final response =
+        await http.get(Uri.parse('${baseUrl}weather?q=$city&appid=$apiKey&units=metric'));
     if (response.statusCode == 200) {
       return WeatherModel.fromJson(jsonDecode(response.body));
     } else {
@@ -44,8 +43,8 @@ class WeatherApiService {
   }
 
   Future<List<ForecastModel>> fetchForecastByCity(String city) async {
-    final response = await http.get(
-        Uri.parse('${baseUrl}forecast?q=$city&appid=$apiKey&units=metric'));
+    final response =
+        await http.get(Uri.parse('${baseUrl}forecast?q=$city&appid=$apiKey&units=metric'));
     if (response.statusCode == 200) {
       final List<dynamic> forecastList = jsonDecode(response.body)['list'];
       return forecastList.map((json) => ForecastModel.fromJson(json)).toList();
@@ -54,3 +53,5 @@ class WeatherApiService {
     }
   }
 }
+
+WeatherApiService weatherApiService = WeatherApiService();
