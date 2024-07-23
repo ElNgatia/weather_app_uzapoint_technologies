@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:weather_app_uza_technologies/features/weather/providers/weather_provider.dart';
 import 'package:weather_app_uza_technologies/features/weather/views/weather_scaffold.dart';
 
-import 'features/weather/controllers/theme_provider.dart';
+import 'features/weather/providers/theme_provider.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: '.env');

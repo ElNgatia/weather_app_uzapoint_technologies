@@ -28,13 +28,13 @@ class ForecastModel {
   factory ForecastModel.fromJson(Map<String, dynamic> json) {
     return ForecastModel(
       date: json['dt'],
-      temp: json['main']['temp'],
-      feelsLike: json['main']['feels_like'],
-      tempMin: json['main']['temp_min'],
-      tempMax: json['main']['temp_max'],
+      temp: json['main']['temp'].toDouble(),
+      feelsLike: json['main']['feels_like'].toDouble(),
+      tempMin: json['main']['temp_min'].toDouble(),
+      tempMax: json['main']['temp_max'].toDouble(),
       pressure: json['main']['pressure'],
       humidity: json['main']['humidity'],
-      wind: json['wind']['speed'],
+      wind: json['wind']['speed'].toDouble(),
       visibility: json['visibility'],
       description: json['weather'][0]['description'],
       icon: json['weather'][0]['icon'],

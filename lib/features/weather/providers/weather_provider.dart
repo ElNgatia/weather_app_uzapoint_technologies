@@ -14,14 +14,9 @@ class WeatherProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<WeatherApiService>(create: (_) => WeatherApiService()),
-        Provider<LocationService>(create: (_) => LocationService()),
         ChangeNotifierProvider<WeatherController>(
           create: (context) => WeatherController(
-              weatherApiService:
-                  Provider.of<WeatherApiService>(context, listen: false),
-              locationService:
-                  Provider.of<LocationService>(context, listen: false)),
+              weatherApiService: weatherApiService, locationService: locationService),
         ),
       ],
       child: child,

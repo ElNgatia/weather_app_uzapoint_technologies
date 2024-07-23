@@ -2,7 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../controllers/theme_provider.dart';
+import '../providers/theme_provider.dart';
 import 'current_weather_screen.dart';
 import 'forecast_screen.dart';
 import 'search_screen.dart';
